@@ -1,6 +1,9 @@
 import express from "express";
 import getAllServicesEndpoint from "./endpoints/getAllServicesEndpoint";
 import getAllLocationsEndpoint from "./endpoints/getAllLocationsEndpoint";
+import loginEndpoint from "./endpoints/loginEndpoint";
+import getAllEventsEndpoint from "./endpoints/getAllEventsEndpoint";
+import getAllProductsEndpoint from "./endpoints/getAllProductsEndpoint";
 
 const app = express();
 const cors = require('cors')
@@ -12,5 +15,9 @@ require('dotenv/config')
 
 app.get('/services', getAllServicesEndpoint)
 app.get('/locations', getAllLocationsEndpoint)
+app.get('/events', getAllEventsEndpoint)
+app.get('/products', getAllProductsEndpoint)
+
+app.post('/login', loginEndpoint)
 
 export default app;
