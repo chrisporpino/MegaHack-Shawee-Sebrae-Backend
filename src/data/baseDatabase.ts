@@ -37,4 +37,44 @@ export class BaseDatabase {
       throw new Error(err.sqlMessage)
     }
   }
+
+  async getUserByEmail(email:string){
+    try {
+      const query = await this.connection.raw(
+        `SELECT * FROM megahack_users
+        WHERE email = "${email}"`
+      )
+
+      return query[0][0]
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
+
+  async getAllEvents() {
+    try {
+      const query = await this.connection.raw(
+        `SELECT * FROM megahack_events`
+      )
+
+      return query[0]
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
+
+  async getAllProducts() {
+    try {
+      const query = await this.connection.raw(
+        `SELECT * FROM megahack_products`
+      )
+
+      return query[0]
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
 }
