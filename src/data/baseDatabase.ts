@@ -64,6 +64,41 @@ export class BaseDatabase {
       throw new Error(err.sqlMessage)
     }
   }
+  
+  async getServiceById(id: string) {
+    try {
+      const query = await this.connection.raw(
+        `SELECT durationTimeInMilisecond
+        FROM megahack_services
+        WHERE id='${id}'`
+      )
+
+      return Number(query[0][0].durationTimeInMilisecond)
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
+
+  async createNewEvent(event: any) {
+    try {
+      const query = await this.connection.raw(
+        `INSERT INTO megahack_events VALUES (
+          '${event.id}',
+          '${event.serviceId}',
+          '${event.startTime}',
+          '${event.endTime}',
+          '${event.localId}',
+          '${event.observation}',
+          '${event.costumerId}'
+        )
+        `
+      )
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
 
   async getAllProducts() {
     try {
