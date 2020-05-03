@@ -18,7 +18,21 @@ export class BaseDatabase {
         `SELECT * FROM megahack_services`
       )
 
-      return query
+      return query[0]
+      
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
+
+  async getAllLocations() {
+    try {
+      const query = await this.connection.raw(
+        `SELECT * FROM megahack_locations`
+      )
+
+      return query[0]
+
     } catch (err) {
       throw new Error(err.sqlMessage)
     }
