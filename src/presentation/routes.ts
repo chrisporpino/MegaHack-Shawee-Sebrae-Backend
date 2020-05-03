@@ -4,6 +4,7 @@ import getAllLocationsEndpoint from "./endpoints/getAllLocationsEndpoint";
 import loginEndpoint from "./endpoints/loginEndpoint";
 import getAllEventsEndpoint from "./endpoints/getAllEventsEndpoint";
 import getAllProductsEndpoint from "./endpoints/getAllProductsEndpoint";
+import createNewEventEndpoint from "./endpoints/createNewEventEndpoint";
 
 const app = express();
 const cors = require('cors')
@@ -17,6 +18,7 @@ app.get('/services', getAllServicesEndpoint)
 app.get('/locations', getAllLocationsEndpoint)
 app.get('/events', getAllEventsEndpoint)
 app.get('/products', getAllProductsEndpoint)
+app.post('/events/scheduling', createNewEventEndpoint)
 
 app.post('/login', loginEndpoint)
 
