@@ -12,6 +12,25 @@ export class BaseDatabase {
     }
   });
 
+  async signUp(user: any) {
+    try {
+      const query = await this.connection.raw(
+        `INSERT INTO megahack_users VALUES (
+          '${user.id}',
+          '${user.name}',
+          '${user.email}',
+          '${user.password}',
+          'COSTUMER',
+          '${user.address}'
+          )`
+      )
+
+    } catch (err) {
+      throw new Error(err.sqlMessage)
+    }
+  }
+
+
   async getAllServices() {
     try {
       const query = await this.connection.raw(
@@ -19,7 +38,7 @@ export class BaseDatabase {
       )
 
       return query[0]
-      
+
     } catch (err) {
       throw new Error(err.sqlMessage)
     }
@@ -38,7 +57,7 @@ export class BaseDatabase {
     }
   }
 
-  async getUserByEmail(email:string){
+  async getUserByEmail(email: string) {
     try {
       const query = await this.connection.raw(
         `SELECT * FROM megahack_users
@@ -64,7 +83,7 @@ export class BaseDatabase {
       throw new Error(err.sqlMessage)
     }
   }
-  
+
   async getServiceById(id: string) {
     try {
       const query = await this.connection.raw(
@@ -91,8 +110,7 @@ export class BaseDatabase {
           '${event.localId}',
           '${event.observation}',
           '${event.costumerId}'
-        )
-        `
+        )`
       )
 
     } catch (err) {

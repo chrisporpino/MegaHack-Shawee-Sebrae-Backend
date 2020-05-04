@@ -2,6 +2,7 @@ import express from "express";
 import getAllServicesEndpoint from "./endpoints/getAllServicesEndpoint";
 import getAllLocationsEndpoint from "./endpoints/getAllLocationsEndpoint";
 import loginEndpoint from "./endpoints/loginEndpoint";
+import signupEndpoint from "./endpoints/signupEndpoint";
 import getAllEventsEndpoint from "./endpoints/getAllEventsEndpoint";
 import getAllProductsEndpoint from "./endpoints/getAllProductsEndpoint";
 import createNewEventEndpoint from "./endpoints/createNewEventEndpoint";
@@ -21,5 +22,6 @@ app.get('/products', getAllProductsEndpoint)
 app.post('/events/scheduling', createNewEventEndpoint)
 
 app.post('/login', loginEndpoint)
+app.post('/signup', signupEndpoint)
 
 export default app;
